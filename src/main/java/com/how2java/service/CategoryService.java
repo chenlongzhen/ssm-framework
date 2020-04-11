@@ -8,4 +8,6 @@ import com.how2java.util.Page;
 public interface CategoryService {
 
 	List<Category> list();
+
+	 List<Category> showChart();
 }

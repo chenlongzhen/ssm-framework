@@ -16,24 +16,12 @@
     <!--通过注解，将Service的生命周期纳入Spring的管理 https://www.cnblogs.com/leduo-zuul/p/10685904.html-->
     <context:annotation-config/>
     <context:component-scan base-package="com.how2java.service"/>
-<!--配置数据源-->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName">
-            <value>com.mysql.jdbc.Driver</value>
-        </property>
-        <property name="url">
-            <value>jdbc:mysql://localhost:3306/how2java?characterEncoding=UTF-8</value>
 
-        </property>
-        <property name="username">
-            <value>root</value>
-        </property>
-        <property name="password">
-            <value>12345678</value>
-        </property>
-    </bean>
+    <!--下边是mybatis的标准配置 可以认为是 mybatis-config.xml-->
+    <import resource="mybatis-config.xml"></import>
 
-<!--扫描存放SQL语句的Category.xml-->
+    <!--扫描存放SQL语句的Category.xml-->
+    <!--https://www.cnblogs.com/ClassNotFoundException/p/6425558.html-->
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="typeAliasesPackage" value="com.how2java.pojo"/>
         <property name="dataSource" ref="dataSource"/>
@@ -56,6 +44,5 @@
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.how2java.mapper"/>
     </bean>
-
 
 </beans>

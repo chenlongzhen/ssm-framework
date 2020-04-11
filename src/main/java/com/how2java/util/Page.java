@@ -1,5 +1,8 @@
 package com.how2java.util;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Page {
 
 	int start=0;

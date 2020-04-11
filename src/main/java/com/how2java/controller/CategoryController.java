@@ -1,12 +1,16 @@
 package com.how2java.controller;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageHelper;
@@ -36,6 +40,30 @@ public class CategoryController {
 		// 放入jsp路径
 		mav.setViewName("listCategory");
 		return mav;
+	}
+
+	/**
+	https://www.cnblogs.com/hemiy/p/6228623.html
+	*/
+	@RequestMapping("/echart1")
+    @ResponseBody //https://www.cnblogs.com/mengtaoadmin/p/11184014.html!!!!TODO!!!!
+	public Object listCategoryEchart(Page page){
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		List<Float> clist1 = new ArrayList<Float>();
+		List<Category> cs= categoryService.list();
+
+		for(Category cl : cs) {
+			clist1.add(Float.valueOf(cl.getId()));
+		}
+
+		map.put("c_eva", clist1);
+		map.put("c_rain", clist1);
+		map.put("c_avgt", clist1);
+		map.put("success1", true);
+
+		return map;
 	}
 
 }

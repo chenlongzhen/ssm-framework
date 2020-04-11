@@ -19,5 +19,12 @@ public class CategoryServiceImpl  implements CategoryService{
 		return categoryMapper.list();
 	}
 
-
+	/**
+	 * 返回controller需要的数据
+	 * @return
+	 */
+	@Override
+	public List<Category> showChart() {
+	    return list();
+	}
 }
